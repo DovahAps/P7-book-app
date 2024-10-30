@@ -5,13 +5,14 @@ const path = require('path');
 const app = express();
 const booksRoutes = require('./routes/Books.js');
 const userRoutes = require('./routes/User.js');
+require('dotenv').config();
 
 
 app.use(express.json());
 
 // MongoDB 
 mongoose
-.connect('mongodb+srv://marceloaj96:lKAqbluO058wg64H@cluster0.bc30c.mongodb.net/myDatabase?retryWrites=true&w=majority')
+.connect(process.env.MONGODB_URI)
 .then(() => console.log('Connexion à MongoDB réussie!'))
 .catch((error) => console.log('Connexion à MongoDB failed !', error));
 
